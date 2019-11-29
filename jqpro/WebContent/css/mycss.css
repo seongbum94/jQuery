@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+pre{
+	height : auto;
+	font-size : 15px;
+	background : #A4B1F9;
+	border-top : 5px solid blue;
+	border-bottom : 5px double blue;
+}

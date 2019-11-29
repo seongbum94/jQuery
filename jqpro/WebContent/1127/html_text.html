@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<link rel = "stylesheet" href = "../css/mycss.css">
+<script type="text/javascript">
+	$(function(){
+		$('#btn1').on('click',function(){
+// 			aa = $('body').html();
+// 			aa = $('p').html();
+// 			alert(aa);
+			
+			aa = "";
+			$('p').each(function(i){
+				aa += $(this).html() + '\n';
+			})
+			alert(aa);
+		})
+		
+		$('#btn2').on('click',function(){
+// 			aa = $('body').text();
+			aa = $('p').text();
+			alert(aa);
+		})
+		
+		$('#btn3').on('click', function(){
+			$('#d1').html("<h1>Hello</h1>");	
+		})
+		
+		$('#btn4').on('click', function(){
+			$('#d2').text("<h1>Hello</h1>");
+		})
+	})
+</script>
+<link rel = "stylesheet" href = "../css/mycss.css">
+<style>
+	div{
+		height : auto;
+		padding : 10px;
+		margin : 10px;
+		background : yellow;
+	}
+</style>
+</head>
+<body>
+	<pre>
+		$('p').html() : 첫번째 p태그를 대상으로  p태그에서 html을 포함한 내용을 가져온다.
+		$('p').text() : 전체 p를 대상으로 p태그 안의 태그 없이 내용만 가져온다. 
+		
+		$('#d1').html()  h1태그가 실행되어 hello가 출력된다.
+		$('#d2').text()  h1태그가 실행되지 않고 글자로 hello와 같이 출력된다.
+	</pre>
+	<p>1<a>홍길동</a></p>
+	<p>2<a>개나리</a></p>
+	<p>3<a>진달래</a></p>  
+	
+	<button type = "button" id = "btn1">html-get</button>
+	<button type = "button" id = "btn2">text-get</button>
+	<br>
+	<br>
+	<pre>
+		$('p').html() : 첫번째 p태그를 대상으로  p태그에서 html을 포함한 내용을 가져온다.
+		$('p').text() : 전체 p를 대상으로 p태그 안의 태그 없이 내용만 가져온다. 
+		
+		$('#d1').html() : h1태그가 실행되어 hello가 출력된다.
+		$('#d2').text() : h1태그가 실행되지 않고 글자로 hello와 같이 출력된다.
+	</pre>	
+	
+	<div id = "d1"></div>
+	<div id = "d2"></div>
+	<button type = "button" id = "btn3">html-set</button>
+	<button type = "button" id = "btn4">text-set</button>
+</body>
+</html>

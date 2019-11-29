@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+// 		h1list = document.getElementsByTagName('h1');
+// 		h1list.style.color = 'red';
+		h1list = $('h1');
+		h1list.css('color','blue');
+		h1list.eq(1).css('color','green').css('background','yellow');
+		h1list.eq(2).css({'color' : 'red', 'background' : 'green'});
+	})
+</script>
+</head>
+<body>
+	<h1>jQuery를 배웁시다.</h1>
+	<h1>짧고 간결합니다.</h1>
+	<h1>배우기 쉬워요</h1>
+	<h1>무료에요</h1>
+</body>
+</html>

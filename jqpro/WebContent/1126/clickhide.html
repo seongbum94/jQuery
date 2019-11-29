@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<script>
+	$(function(){
+		$('h1').on('click', function(){
+			$(this).hide();
+			if($('h1:visible').length == 0){
+				$('button').show();
+			}
+		})
+		$('button').on('click', function(){
+			$('h1').show();
+			$(this).hide();
+		})
+	})
+</script>
+<style>
+	button{
+		display : none;
+	}
+</style>
+</head>
+<body>
+	<h1>클릭하면 사라집니다1</h1>
+	<h1>클릭하면 사라집니다2</h1>
+	<h1>클릭하면 사라집니다3</h1>
+	<h1>클릭하면 사라집니다4</h1>
+	<h1>클릭하면 사라집니다5</h1>
+	<h1>클릭하면 사라집니다6</h1>
+	<h1>클릭하면 사라집니다7</h1>
+	<h1>클릭하면 사라집니다8</h1>
+	<h1>클릭하면 사라집니다9</h1>
+	<h1>클릭하면 사라집니다10</h1>
+	
+	<button type = 'button'>보이기</button>
+</body>
+</html>

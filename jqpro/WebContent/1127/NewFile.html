@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+   <script src = "../js/jquery-3.4.1.min.js"></script>
+   
+   <script>
+      $(function () {
+         //button id를 같이 써줌
+         $('button#btn1').on('click', function(){
+            pp = $('<p id="p1">즐거운 jQuery~~~~ </p>')
+            
+            //body에 pp를 올린다
+            $(pp).appendTo('#d1'); 
+         })
+         
+     $('#btn2').on('click', function () {
+        pp = $('<p/>', {
+              'id' : 'p2', 
+              'text' : '행복한 수요일~~',
+              'click' : function() {
+           	  cr = Math.floor(Math.random() * 255);
+           	  cg = Math.floor(Math.random() * 255);
+			  cb = Math.floor(Math.random() * 255);
+           	  
+                 $(this).css('font-size', '+=2px')
+                 $(this).css('color','rgb(' + cr + ',' + cg +','+ cb +')');
+              }
+        })
+        $(pp).appendTo('#d2');
+        
+     })   
+        
+         
+      })
+   </script>
+   
+   <style>
+      div{
+         height : auto;
+         background : #F4FF81;
+         padding : 5px;
+         
+      }
+   </style>
+</head>
+
+<body>
+   <button type = "button" id ="btn1">클릭</button>
+   <div id = "d1"></div>
+<br>
+
+   <button type = "button" id ="btn2">클릭</button>      
+   <div id = "d2"></div>   
+</body>
+</html>

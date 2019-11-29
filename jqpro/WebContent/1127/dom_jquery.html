@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<link rel = "stylesheet" href = "../css/mycss.css">
+
+<script>
+	$(function(){
+		//pp = $('p');
+		//pp.css('color','red');
+		
+		//plist는 dom객체
+		plist = document.getElementsByTagName('p');
+		//plist[0].style.color = 'blue';
+
+		//plist[0]은 dom객체이다.
+		//dom객체는 css 형태를 사용할 수 없다.
+		//plist[0].css('color','red');
+		
+		//dom객체를 $() jQuery함수로 감싸주면 css()함수 호출 가능
+		$(plist[0]).css('color','red');
+		/////////////////////////////////////////////////////////////////////
+		
+		//p전체를 선택해서 jQuery객체로 리턴
+		pp = $('p');
+		
+		//전체중에서 한개만 선택할때 - jQuery로 리턴한다.
+		p0 = pp.eq(1);
+		p0.css('color','green');
+		
+		
+		//전체중에서 한개만 선택할때 - DOM 객체로 리턴한다.
+		p2 = pp[2];		//p2 = pp.get(2)
+		$(p2).css('color','magenta');
+		
+	})
+</script>
+</head>
+<body>
+	<pre>
+		dom객체를 jQuery객체로 바꾸기
+		- dom 객체변수를 $()로 감싼다.
+		
+		jQuery 객체를 dom로 바꾸기
+		- [index]
+	</pre>
+	<p>무궁화 꽃이 피었습니다.</p>
+	
+	<form>
+		<p>단풍잎이 울긋불긋</p>
+	</form>
+	
+	<form>
+		<p>나뭇잎이 우수수</p>
+	</form>
+	
+	<div>
+		<p>쌀쌀한 겨울은 마음이 따뜻해요</p>
+	</div>
+	
+	<div>
+		<p>눈은 언제 오나요</p>
+	</div>
+	
+</body>
+</html>

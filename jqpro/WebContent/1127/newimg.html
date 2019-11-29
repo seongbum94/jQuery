@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<title>Insert title here</title>
+<script>
+$(function(){
+	imgs = ['../images/가구1.jpg',
+			'../images/단풍.jpg',
+			'../images/데스크탑.png',
+			'../images/색깔표.GIF',
+			'../images/셔틀콕.jpg',
+			'../images/아메리카노.jpg',
+			'../images/에스프레소.jpg'
+	
+	$('#btn1').on('click',function(){
+		rand = Math.floor(Math.random() * imgs.length);
+		$('<img>', {
+			'src' : imgs[rand],
+			'height' : '200px',
+			'width' : '200px',
+			'click' : function(){
+				$(this).css('border','2px solid red');
+			}
+		}).appendTo('body');
+	})
+})
+</script>
+</head>
+<body>
+	<button type = "button" id = "btn1">버튼1</button>
+	<br><br>
+</body>
+</html>

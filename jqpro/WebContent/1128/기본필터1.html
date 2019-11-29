@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/mycss.css">
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<script>
+	$(function(){
+		$('li:first').css('background','yellow');
+		$('li:last').css('background','yellow');
+		$('li:eq(5)').css('background','red');	
+		$('li:lt(4)').css('font-size','1.5em').css('font-weight','bold');
+		$('tr:even').css('background','	#00FFFF');
+		$('tr:odd').css('background','#4169E1');
+		$('tr:first').css('background','#0000CD').css('color','white');
+	})
+</script>
+<style>
+	table{
+		border-collapse: collapse;
+	}
+	td{
+		width : 300px;
+		height : 40px;
+		text-align : center;
+		padding : 10px;
+	}
+</style>
+</head>
+<body>
+	<ul>
+		<li> one </li>
+		<li> two </li>
+		<li>  three </li>
+		<li> four </li>
+		<li> five </li>
+		<li> six</li>
+		<li> seven</li>
+		<li>eight</li>
+		<li>nine</li>
+	</ul>
+	<br>
+	
+	<table border = "1">
+		<tr>
+			<td>상품</td>
+			<td>가격</td>
+		</tr>
+		<tr>
+			<td>one</td>
+			<td>62won</td>
+		</tr>
+		<tr>
+			<td>two</td>
+			<td>45won</td>
+		</tr>
+		<tr>
+			<td>three</td>
+			<td>33won</td>
+		</tr>
+		<tr>
+			<td>four</td>
+			<td>72won</td>
+		</tr>
+		<tr>
+			<td>one</td>
+			<td>62won</td>
+		</tr>
+		<tr>
+			<td>two</td>
+			<td>45won</td>
+		</tr>
+		<tr>
+			<td>three</td>
+			<td>33won</td>
+		</tr>
+		<tr>
+			<td>four</td>
+			<td>72won</td>
+		</tr>
+	</table>
+</body>
+</html>
