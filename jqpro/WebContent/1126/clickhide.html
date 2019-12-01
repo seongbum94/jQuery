@@ -6,22 +6,25 @@
 <script src = "../js/jquery-3.4.1.min.js"></script>
 <script>
 	$(function(){
+		$('button').prop('disabled',true);
+		
 		$('h1').on('click', function(){
 			$(this).hide();
 			if($('h1:visible').length == 0){
-				$('button').show();
+// 				$('button').show();
+				$('button').prop('disabled',false);
 			}
 		})
 		$('button').on('click', function(){
 			$('h1').show();
-			$(this).hide();
+			$(this).prop('disabled',true);
 		})
 	})
 </script>
 <style>
-	button{
-		display : none;
-	}
+/* 	button{ */
+/* 		display : none; */
+/* 	} */
 </style>
 </head>
 <body>

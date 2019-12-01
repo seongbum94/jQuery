@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="../css/mycss.css">
+<script>
+   $(function(){
+      
+      //$(':button').on('click',funcPro);
+      $(':button').click(funcPro);
+      
+      function funcPro(){
+         res = "";
+         
+         $.each($(':checkbox:checked'), function(i){
+            res += $(this).val();
+         })
+         
+         alert(res);
+         
+      }
+      
+      
+   })
+   /* $(function(){
+      
+      //$(':button').on('click',function(){
+      $('input:button').on('click',function(){
+         
+      
+         
+      })
+   }) */
+</script>
+</head>
+<body>
+<form action="../1128/test.jsp" method="post">
+   취 미 :
+   <input type="checkbox" name="hobby" value="여행" checked >여행
+   <input type="checkbox" name="hobby" value="장기">장기
+   <input type="checkbox" name="hobby" value="바둑">바둑
+   <input type="checkbox" name="hobby" value="독서" >독서
+   <input type="checkbox" name="hobby" value="낚시">낚시<br><br>
+   <input type="button" value="전송">
+</form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/mycss.css">
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<script>
+	$(function(){
+		//select의 change 이벤트
+		$('select').on('change',function(){
+			res = "";
+			$('select option:selected').each(function(i){
+				res += $(this).val() + "<br>";
+			})
+			$('div').html(res);
+		})
+	})
+	
+	///////////////////////////////////
+	/* 
+	$('select').on('change',ff);
+	
+	function ff(){
+		
+	 }*/
+	//////////////////////////////////
+</script>
+</head>
+<body>
+	<form>
+	봄소식 : <select name="spring" id="spring"	 multiple size = "6">
+			<option>개나리</option>
+			<option selected>진달래</option>
+			<option>민들레</option>
+			<option selected>벚꽃</option>
+			<option>목련</option>
+			<option>철쭉</option>
+		   </select>
+	</form>
+	<br>
+	<div></div>	
+</body>
+</html>
