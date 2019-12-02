@@ -12,7 +12,8 @@
             pp = $('<p id="p1">즐거운 jQuery~~~~ </p>')
             
             //body에 pp를 올린다
-            $(pp).appendTo('#d1'); 
+//             $(pp).appendTo('#d1'); 
+            $('#d1').append(pp); 
          })
          
      $('#btn2').on('click', function () {
@@ -28,8 +29,8 @@
                  $(this).css('color','rgb(' + cr + ',' + cg +','+ cb +')');
               }
         })
-        $(pp).appendTo('#d2');
-        
+//         $(pp).appendTo('#d2');
+        $('#d2').append(pp);
      })   
         
          

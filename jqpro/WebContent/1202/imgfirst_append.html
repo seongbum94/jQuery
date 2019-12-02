@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/mycss.css">
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<script>
+// 	$(function(){
+// 		a = window.setInterval(function(){
+// 			$('img:first').appendTo('div');		
+// 		},500);
+// 	})
+	$(function(){
+		$('button').on('click',function(){
+			vid = $(this).attr('id');
+			if(vid == "start"){
+				
+				$(this).attr('hidden', 'hidden');
+				
+				a = window.setInterval(function(){
+					$('img:first').appendTo('div');		
+				},500);
+			} else if(vid == "stop"){
+				$('#start').prop('hidden',false);
+				window.clearInterval(a);
+			}
+		})
+		
+		$('p').on('click', function(){
+			vtitle = $(this).attr('title');
+// 			$('<img>', {
+// 				'src' : '../images/' + vtitle + '.jpg'
+// 			}).insertBefore(this);
+			
+			$(this).before(
+				$('<img>', {
+	 				'src' : '../images/' + vtitle + '.jpg'
+	 			})
+			)
+		})
+	})
+</script>
+<style>
+	img{
+		width : 100px;
+		heigth : 100px;
+	}
+</style>
+</head>
+<body>
+	<div>
+		<img src = "../images/사자.jpg">
+		<img src = "../images/단풍.jpg">
+		<img src = "../images/핫초코.jpg">
+		<img src = "../images/풍차.jpg">
+		<img src = "../images/단풍.jpg">
+		<img src = "../images/최민수.jpg">
+		<img src = "../images/Koala.jpg">
+	</div>
+	<button id = "start" type = "button" hidden = "hidden">시작하기</button>
+	<button id = "stop" type = "button">멈추기</button>
+	
+	
+	<div id = "img2">
+		<p title = "Tulips">튜울립</p>
+		<p title = "최민수">최민수</p>
+		<p title = "Penguins">펭귄</p>
+		<p title = "pizza">피자</p>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
