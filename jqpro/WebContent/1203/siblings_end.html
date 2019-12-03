@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/mycss.css">
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<script>
+	$(function(){
+// 		$('div:contains("b")').siblings().css('border','2px solid blue');		
+		$('div').eq(1).css('border','2px solid green').siblings().css('border','2px solid red').end().next()
+				.html("<h1>세번째</h1>").end().nextAll().css('background','yellow')
+				.end().prev().css('background','green');
+	})
+</script>
+<style>
+	div{
+		float : left;
+	}
+</style>
+</head>
+<body>
+	<div>a</div>
+	<div>b</div>
+	<div>c</div>
+	<div>d</div>
+	<div>e</div>
+	<div class = "orange">f</div>
+	<div>g</div>
+</body>
+</html>

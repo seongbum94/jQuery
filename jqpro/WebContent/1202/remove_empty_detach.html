@@ -22,6 +22,16 @@
 				$('div').empty();
 			}
 		})
+		
+		$('#remove').on('click', function(){
+			p2 = $('#p2').remove();
+			$(p2).appendTo('#d1');
+		})
+		
+		$('#detach').on('click', function(){
+			p3 = $('#p2').detach();
+			$(p3).appendTo('#d1');
+		})
 	})
 </script>
 <style>
@@ -43,5 +53,29 @@
 	<br>
 	<button type = "button">remove</button>
 	<button type = "button">empty</button>
+	
+	<pre>
+		remove : 선택요소를 지운다.
+				$('div').remove() : div요소가 완전 지워진다.
+				
+		empty : 선택요소의 자식 후손내용과 요소를 지운다.
+				$('div').empty() : div요소는 지우지 않고
+								   div요소안을 지운다.
+	</pre>
+	
+	<hr>
+	<button id = "remove" type = "button">remove_event</button>
+	<button id = "detach" type = "button"> detach</button>
+	
+	<div id = "d1"></div>
+	<pre>
+		remove : 요소를 삭제한다.
+				 삭제시 이벤트 핸들러도 같이 삭제된다.
+		detach : 요소를 삭제한다.
+				 삭제시 이벤트는 삭제되지 않는다.
+	</pre>
 </body>
 </html>
+
+
+
