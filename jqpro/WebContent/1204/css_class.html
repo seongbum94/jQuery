@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/mycss.css">
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<script>
+	$(function(){
+		alert($('p').eq(0).css('background-color'));	
+		
+		$('p').mouseover(function(){
+			$(this).addClass('bb');
+		})
+		$('p').mouseout(function(){
+			$(this).removeClass('bb');
+		})
+		
+		$('img').mouseover(function(){
+			$(this).addClass('imgborder');
+		})
+		$('img').mouseout(function(){
+			$(this).removeClass('imgborder');
+		})
+		$('p').click(function(){
+			$(this).toggleClass('pborder');
+		})
+		
+		$('div').click(function(){
+			if($(this).hasClass('bb')){
+				$(this).css('font-size','+=1.5em')
+			} else {
+				$(this).addClass('bb');
+			}
+		})
+	})
+</script>
+<style>
+	.aa{
+		background : pink;
+	}
+	.bb{
+		background : lime;
+	}
+	img{
+		width : 100px;
+		height : 100px;
+	}
+	.imgborder{
+		border : 3px solid lime;
+	}
+	.pborder{
+		border : 3px solid lightblue;
+	}
+</style>
+</head>
+<body>
+	<pre>
+		addClass('classname') : 
+			classname을 이용해서 동적으로 스타일을 추가 변경한다.
+		
+		removeClass('classname') : 
+			classname을 이용해서 스타일을 제거한다.	
+		
+		hasClass('classname') : 
+			선택한 요소가 classname을 가지고 있으면 true 없으면 false를 리턴한다.
+	</pre>
+	<p class = "aa">무궁화 꽃이 피었습니다.</p>
+	<p>단풍잎은 다 떨어졌어요 </p>
+	<p class = "aa">준비한 자에게만 오는것은 무엇일까요??</p>
+	<p>점심시간은 언제~</p>
+	
+	<br>
+	
+	<img src = "../images/가구1.jpg">
+	<img src = "../images/가구2.jpg">
+	<img src = "../images/셔틀콕.jpg">
+	<img src = "../images/데스크탑.png">
+	<img src = "../images/모니터.jpg">
+	<img src = "../images/식품1.jpg">
+	
+	<div>
+		Hello~~
+	</div>
+</body>
+</html>
+
+
+
+
+

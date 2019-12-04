@@ -3,23 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel = "stylesheet" href = "../css/mycss.css">
-<script src = "../js/jquery-3.4.1.min.js"></script>
-<script>
-	$(function(){
-		result = "Contents : 태그가 있거나 없거나 자식의 내용 가져오기<br>";
-		$('div').contents();
-	})
+<script src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+   $(function() {
+      $('button').click(function(){
+         btxt = $(this).text();
+         if(btxt == "contents"){
+            result = "Contents : 태그가 있거나 없거나 자식의 내용을 가져오기 \n"
+            $('div').contents().each(function(i){
+               
+               if(typeof this.tagName == "undefined"){
+                  result += i + "번째 문자열 --> " +  $(this).text() +"\n";
+               }else{
+                  result += i + "번째 --> " + this.tagName + " : " + $(this).html() +"\n"; // $(this).html() 
+               }
+            })
+            
+            alert(result);
+            
+         }else if(btxt == "children"){
+            result = "children : 태그가 있는 것만을 대상으로 가져오기 \n";
+            
+            $('div').children().each(function(i){
+               result += i + "번째 --> " + this.tagName + " : " + $(this).html() + "\n";
+            })
+            alert(result);
+         }
+      })
+      
+   })
 </script>
+<link rel = "stylesheet" href="../css/mycss.css">
+<style type="text/css">
+   div{
+      width: auto;
+      height: auto;
+   }
+
+
+</style>
 </head>
 <body>
-	<pre>
-		contents : 자식요소들과 내용을 다 가져온다.
-					tag가 있거나 없거나 모두 포함
-		children : 자식요소들중 tag가 있는 요소들을 대상으로 
-					내용을 가져온다.
-	</pre>
-	<div>KOREA <p>코리아 p태그</p></div>
-	<span>스판 코리아 <span></span></span>
+<pre>
+
+   contents : 자식요소들과 내용을 다 가져온다. 
+            tag가 있거나 없거나 모두 포함
+   children : 자식요소들 중 tag가 있는 요소들을 대상으로 내용을 가져온다. 
+   
+</pre>
+
+<div>KOREA<p> 코리아 p태그 </p><span> span tag<span> span KOREA의 span </span></span></div>
+<br>
+<button type="button">contents</button>
+<button type="button">children</button>
+
 </body>
 </html>

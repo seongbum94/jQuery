@@ -9,8 +9,6 @@
   padding: 5px;
   margin: 15px;
 }
-
-
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
@@ -43,7 +41,20 @@ $(document).ready(function(){
      $("#d2 li.start").prevUntil('#d2 li.stop').css({"color": "red", "border": "2px solid orange"});
          
    })
+   
+   
+   ////////////////////////////////////
+   
+   $('#siblings').click(function () {
+      $('#d3 li.start').siblings().css({"color": "red", "border": "2px solid green"});
+   })
+   $('#sibling_ele').click(function () {
+      $('#d3 li.start').siblings('p').css({"color": "red", "border": "2px solid green"});
+      $('#d3 li.start').siblings('li:last').css({"color": "red", "border": "2px solid orange"});
+   })
+
    ///////////////////////////////////////////////////
+   
    $('#parent').click(function () {
       $('#d4 span').parent().css({"color": "red", "border": "2px solid blue"});
    })
@@ -59,17 +70,32 @@ $(document).ready(function(){
    $('#parents_until').click(function () {
       $('#d4 span').parentsUntil('#d4').css({"color": "blue", "border": "2px solid orange"});
    })
-   ////////////////////////////////////
-   $('#siblings').click(function () {
-      $('#d3 li.start').siblings().css({"color": "red", "border": "2px solid green"});
-   })
-   $('#sibling_ele').click(function () {
-      $('#d3 li.start').siblings('p').css({"color": "red", "border": "2px solid green"});
-      $('#d3 li.start').siblings('li:last').css({"color": "red", "border": "2px solid orange"});
+   
+   $('#contents').click(function(){
+	  alert($('#d5').contents().text());
    })
    
+   $('#children').click(function(){
+	   //태그가 있는것만 문자열 가져오기
+	   alert($('#d5').children().text());
+   })
+
+   
+   $('#contentsp').click(function(){
+	   //후손은 못찾음
+	   $('#d5').contents('p:first').css({'color' : 'green', 'border' : '2px solid green'});
+   })
+   $('#childrenp').click(function(){
+	   //후손은 못찾음
+	   $('#d5').children('p:last').css({'color' : 'blue', 'border' : '2px solid blue'});
+   })
+   $('#find').click(function(){
+	   //후손을 찾으려면 find를 사용해야한다
+	   $('#d5').find('span').css({'color' : 'red', 'border' : '2px solid red'});
+   })
 });
 </script>
+<meta charset="UTF-8">
 </head>
 <body>
 
@@ -122,8 +148,8 @@ $(document).ready(function(){
     <li>li (the prev sibling of li with class name "start")</li>
     <li>li (sibling)</li>
     <li class="stop">li (sibling with class name "stop")</li>
-    <P>li (sibling)</P>
     <li>li (the prev sibling of li with class name "stop")</li>
+    <p> li</p>
   </ul>   
 </div>
 <button id = "sibling_ele" type = "button">sibling(ele)</button>
@@ -144,8 +170,25 @@ $(document).ready(function(){
 <button id = "parents_ele" type = "button">parents(ele)</button>
 <button id = "parents_until" type = "button">parents(until)</button>
 
+<br><hr><br>
+<div id = "d5" style="width:500px;" class="siblings">div (great-grandparent)
+   <p> p(child)
+      <span> span (grandchild)</span>
+      Hello ~~
+   </p>
+   
+   <p> p(child)
+      <span> span (grandchild)</span>
+      Happy ~~
+   </p>
+   child no tag
+</div>
+<button type="button" id="contents">contents</button>   
+<button type="button" id="children">children(자식찾기)</button>   
+<button type="button" id="find">find(후손찾기)</button>   
 
-
+<button type="button" id="contentsp">contents_p</button>   
+<button type="button" id="childrenp">childrenp</button>   
 
 </body>
 </html>
