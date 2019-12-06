@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/mycss.css">
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<script>
+	$(function(){
+// 		$('a').on('click',function())
+		$('a#a2').bind('click',function(){
+			$('div').toggle();		
+		})
+		$('#a1').bind('click',function(){
+			//나이를 입력하세요
+			age = prompt('나이를 입력하세요');
+			//나이가 15미만이면 page이동이 안되도록 설정한다.
+			if(age < 15){
+				event.preventDefault();
+				alert("15세 미만 이동금지 입니다.");
+			}
+		})
+	})
+</script>
+</head>
+<style>
+	div{
+		width : 70%;
+		height : auto;
+		display : none;
+	}
+</style>
+<body>
+	<h1>이순신</h1>
+	<h2>조선시대의 명장</h2>
+	
+	<a id = "a1" href = "http://www.naver.com">네이버</a><br>
+	<a id = "a2" href = "#">자세히 보기</a>
+	
+	<div>
+		한국사에서 독보적으로 유명한 군인이자 성웅이란 칭호가 따로 붙을 정도로 가장 드높은 영웅이며, <br>
+		무장 이외에 역사적 인물 전체로 넓혀도 세종대왕과 함께 한국에서 가장 유명한 인물이다. 무신으로서도 인간으로서도 희대의 걸물이며,<br>
+		 파란만장한 삶을 산 사내이다. 그는 임진왜란 시기 조선 수군을 이끌고 해상에서 연전연승을 거듭하며 일본군의 보급로를 차단하여 북상을<br>
+		  저지하였는데, 전쟁 내내 적과 싸워 모든 전투에서 최소한의 희생으로 항상 승전을 거두었으며,<br>
+		   당시 임금인 선조[8]와 조정에게 지원은커녕 불합리한 모함과 추궁만 당하였으나 끝까지 충성을 다했고,<br>
+		 임진왜란 최후의 대전투인 노량 해전에서 장렬한 죽음을 맞이했다.
+	</div>
+</body>
+</html>

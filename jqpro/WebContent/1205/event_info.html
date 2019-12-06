@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/mycss.css">
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<script>
+	$(function(){
+// 		$('div').eq(0)
+// 		$('div:eq(0)')
+// 		$('div').filter(':eq(0)')
+		$('button').mousedown(function(event){
+			res = "대상 : " + event.target.tagName + "<br>";
+			res += "페이지 좌표 : " + event.pageX + "," + event.pageY + "<br>";
+			res += "스크린 좌표 : " + event.screenX + "," + event.screenY + "<br>";
+			res += "버튼 : " + event.button + "<br>";
+			res += "Ctrl : " + event.ctrlKey + "<br>";
+			
+			$('#result').html(res);
+		})
+		$('div').eq(0).mousedown(function(event){
+			res = "대상 : " + event.target.tagName + "<br>";
+			res += "페이지 좌표 : " + event.pageX + "," + event.pageY + "<br>";
+			res += "스크린 좌표 : " + event.screenX + "," + event.screenY + "<br>";
+			res += "버튼 : " + event.button + "<br>";
+			res += "Ctrl : " + event.ctrlKey + "<br>";
+			
+			$('#result').html(res);
+			
+			if(event.button == 0){
+				//왼쪽 버튼 눌렸으면 div에 배경색을 변경
+				$(this).css('background','lime');			
+			} else if(event.button == 2) {
+				//오른쪽 버튼이 눌렸으면 테두리를 변경
+				$(this).css('border','3px solid red');
+			} else if(event.button == 1){
+				//마우스의 가운데 버튼이 눌렸으면 hello라는 글자를 출력
+				$(this).append('<h1>hello</h1>');			
+			}
+		})
+	})
+</script>
+<style>
+	#result{
+		width : 100%;
+		height : auto;
+	}
+</style>
+</head>
+<body>
+	<div style = "width : 300px; height : 200px; background-color : yellow;"></div>
+	<br>
+	<button type = "button">버튼</button>
+	<div id = "result"></div>
+</body>
+</html>

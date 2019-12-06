@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/mycss.css">
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<script>
+	$(function(){
+		//$('button.but').bind('click',function(){
+		//bind는 원래 이벤트가 있어야 새로운 버튼에 이벤트가 적용됨
+		$('button.but').on('click',function(){
+			$('<button/>',{
+				'type' : 'button',
+				'text' : '새로운 버튼',
+				'class' : 'but'
+			}).appendTo('div:last');
+		})
+		
+		$('#clear').on('click',function(){
+			//$('button.but').unbind('click');	
+			$('button.but').off('click');
+		})
+	})
+</script>
+<style>
+	div{
+		width : 100%;
+		height : auto;
+	}
+</style>
+</head>
+<body>
+	<pre>
+		bind : 이벤트 핸들러를 연결
+			   실행되기 전부터 이미 만들어져 있었던 정적인 요소에만 이벤트 핸들러가 실행된다.
+			   
+		실행후 동적으로 새롭게 만들어지는 요소에는 이벤트 핸들러가 실행되지 않는다.
+		
+		unbind : 이벤트 핸들러 실행을 중지한다.
+	</pre>
+	<div>
+		<button class = "but" type = "button">버튼1</button>
+		<button class = "but" type = "button">버튼2</button>
+	</div>
+	<br>
+		<button id = "clear" type = "button">해제</button>
+	<hr color = "red" />
+	<div></div>
+</body>
+</html>

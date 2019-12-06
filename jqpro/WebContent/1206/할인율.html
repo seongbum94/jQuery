@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>할인율</title>
+	<script type="text/javascript">
+		window.onload = function () {
+			// cont에 대한 일괄적 이벤트 등록
+			vlist = document.getElementsByClassName('inbox');
+			
+			for (i = 0; i < vlist.length; i++) {
+				vlist[i].addEventListener('click', sale);
+			}
+		}
+		ptag = null;
+		function sale(event){
+			// this를 사용가능, event를 매개변수로 받을 수 있다.
+			// 이전의 생성된 p태그 지우기
+			if (ptag != null) {
+				ptag.parentNode.removeChild(ptag);
+			}
+			
+			// 할인율 랜덤 구하기 5 ~ 10 사이
+			rand = Math.floor(Math.random() * 6 + 5);
+			
+			// 새로운 p태그를 생성 - createElement('p')
+			ptag = document.createElement('p');
+			
+			// p태그에 들어갈 문자객체를 생성 - createTextNode("")
+			node = document.createTextNode("할인율 : " + rand + " %");
+			
+			// p태그에 textNode를 추가
+			ptag.appendChild(node);
+			
+			// 클릭한 div class=con에 p태그를 추가
+// 			clickdiv.appendChild(ptag);
+			this.appendChild(ptag);
+						
+			// clickimg에 대해서 더이상 클릭되지 않도록
+			this.removeEventListener('click', sale);
+		}
+		function proc(clickdiv) {
+			
+			// 이전의 생성된 p태그 지우기
+			if (ptag != null) {
+				ptag.parentNode.removeChild(ptag);
+			}
+			
+			// 할인율 랜덤 구하기 5 ~ 10 사이
+			rand = Math.floor(Math.random() * 6 + 5);
+			
+			// 새로운 p태그를 생성 - createElement('p')
+			ptag = document.createElement('p');
+			
+			// p태그에 들어갈 문자객체를 생성 - createTextNode("")
+			node = document.createTextNode("할인율 : " + rand + " %");
+			
+			// p태그에 textNode를 추가
+			ptag.appendChild(node);
+			
+			// 클릭한 div class=con에 p태그를 추가
+// 			clickdiv.appendChild(ptag); 
+			this.appendChild(ptag);
+						
+			// clickimg에 대해서 더이상 클릭되지 않도록
+			this.removeEventListener('click', sale);
+			
+		}
+	</script>
+	<style>
+		.box1{
+			width : 100%;
+			margin-left : 10px;
+			font-size : 1.5em;
+			background-color: lightblue;
+			color : red;
+		}
+		.box .inner{
+			height: 200px;
+		}
+		.inbox{
+			background: gray;
+			width: 250px;
+			height: 350px;
+			float: left;
+			text-align: center;
+			padding: 10px;
+			border: 1px solid white;
+		}
+		
+		
+		img{
+			width: 100%;
+			height: 200px;
+		}
+		.img:hover{
+			border: 5px solid blue;
+		}
+		p{
+			color : white;
+		}
+		span{
+			color : red;
+			font-weight : bold
+		}
+	</style>
+</head>
+<body>
+	<div class = "box1">
+		일괄적 이벤트 등록<br>
+		<pre>
+			vlist = document.getElementsByClassName('inbox');
+			
+			for (i = 0; i < vlist.length; i++) {
+				<span>vlist[i].addEventListener('click', sale);</span>
+			}
+		</pre>
+		이벤트 제거 <br>
+		<pre>
+			<span>vlist[i].removeEventListener('click', sale);</span>
+		</pre>
+	</div>
+	<div class="box">
+		<h2>Jump for Joy Sale</h2>
+<!-- 		<div class="inner"> -->
+<!-- 			<div class="inbox" onclick="proc(this)"> -->
+<!-- 				<img class="img" src="../images/카푸치노.jpg"> -->
+<!-- 			</div> -->
+<!-- 			<div class="inbox" onclick="proc(this)"> -->
+<!-- 				<img class="img" src="../images/홍길동2.jpg"> -->
+<!-- 			</div> -->
+<!-- 			<div class="inbox" onclick="proc(this)"> -->
+<!-- 				<img class="img" src="../images/spongebob.png"> -->
+<!-- 			</div> -->
+<!-- 			<div class="inbox" onclick="proc(this)"> -->
+<!-- 				<img class="img" src="../images/Penguins.jpg"> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+		
+		<div class="inner">
+			<div class="inbox">
+				<img class="img" src="../images/poodle.png">
+			</div>
+			<div class="inbox">
+				<img class="img" src="../images/computer.png">
+			</div>
+			<div class="inbox">
+				<img class="img" src="../images/아메리카노.jpg">
+			</div>
+			<div class="inbox">
+				<img class="img" src="../images/Penguins.jpg">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>	
+<link rel = "stylesheet" href = "../css/mycss.css">
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<script>
+	$(function(){
+		//$('div').delegate('.but','click',function(){})		//delegate
+		$('div').on('click','.but',function(){					//on으로 delegate효과
+			$('<button/>',{
+				'type' : 'button',
+				'text' : '새로운 버튼',
+				'class' : 'but'
+			}).appendTo('div:last');
+		})
+		
+		$('#clear').on('click',function(){
+			//undelegate는 off와 같다
+			$('div').undelegate('click');
+		})
+	})
+</script>
+<style>
+	div{
+		width : 100%;
+		height : auto;
+	}
+</style>
+</head>
+<body>
+	<pre>
+		delegate : 
+			실행전에 미리 정적으로 만들어져 있던 요소나
+			실행중 동적으로 새롭게 만들어지는 요소에 똑같이 
+			이벤트 핸들러가 실행되어진다.
+			$('div').delegate('.but','click',function(){})
+			$('div').on('click','.but',function(){	
+			
+		div는 .but버튼의 부모요소이고, document가 올수도 있다.
+		
+		해제 : 
+			undelegate/ off/ unbind
+			$('div').unbind('click');
+	</pre>
+	<div>
+		<button class = "but" type = "button">버튼1</button>
+		<button class = "but" type = "button">버튼2</button>
+	</div>
+	<br>
+		<button id = "clear" type = "button">해제</button>
+	<hr color = "red" />
+	<div></div>
+</body>
+</html>
