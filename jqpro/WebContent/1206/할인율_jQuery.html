@@ -3,35 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <link rel = "stylesheet" href = "../css/mycss.css"> -->
 <script src = "../js/jquery-3.4.1.min.js"></script>
 <script>
 	$(function(){
 		//one : 이벤트가 한번만 발생한다.
 		$('.cont').one('click',function(){
-			
 			$('#pg').remove();
 			rand = Math.floor(Math.random() * 6 + 5);
-			
-// 			$('<p id = "pg"> 할인율 : ' + rand + '%');
-			$('<p/>',{
+			//$('<p id = "pg"> 할인율 : ' + rand + '%');
+			$('<p/>', {
 				'id' : 'pg',
 				'text' : '할인율 : ' + rand + '%'
 			}).appendTo(this);
+		})
+		$('img').hover(function() {
+			$(this).addClass('img');
+		}, function() {
+			$(this).removeClass();
 		})
 	})
 </script>
 </head>
 <style>
-		.box1{
-			width : 100%;
-			margin-left : 10px;
-			font-size : 1.5em;
-			background-color: lightblue;
-			color : red;
-		}
-		.box .inner{
-			height: 200px;
+		.box{
+			width : 80%;
+			height : 450px;
+			background : skyblue; 
 		}
 		.cont{
 			background: gray;
@@ -42,35 +39,26 @@
 			padding: 10px;
 			border: 1px solid white;
 		}
-		
-		
 		img{
-			width: 100%;
-			height: 200px;
+			width: 150px;
+			height: 150px;
 		}
-		.img:hover{
+		.img{
 			border: 5px solid blue;
 		}
 		p{
 			color : white;
 		}
-		span{
-			color : red;
-			font-weight : bold
-		}
 </style>
 <body>
-	<div class = "box1">
-		일괄적 이벤트 등록<br>
+	<div class="header">
+		<h2>할인율</h2>
 	</div>
-	<div class="box"> 
-		<h2>Jump for Joy Sale</h2>
-		<div class="inner">
-			<div class="cont"><img class="img" src="../images/poodle.png"></div>
-			<div class="cont"><img class="img" src="../images/computer.png"></div>
-			<div class="cont"><img class="img" src="../images/아메리카노.jpg"></div>
-			<div class="cont"><img class="img" src="../images/Penguins.jpg"></div>
-		</div>
+	<div class="box">
+			<div class="cont"><img src="../images/poodle.png"></div>
+			<div class="cont"><img src="../images/computer.png"></div>
+			<div class="cont"><img src="../images/아메리카노.jpg"></div>
+			<div class="cont"><img src="../images/Penguins.jpg"></div>
 	</div>
 </body>
 </html>
