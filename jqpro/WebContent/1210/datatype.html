@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+<meta charset="UTF-8">
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<link rel = "stylesheet" href = "../css/mycss.css"></link>
+<script>
+	$(function(){
+		xhr = new XMLHttpRequest();
+		
+		$('#text').click(function(){
+			//요청
+			xhr.open('get', 'textData.jsp', true);
+			xhr.send();
+			
+			//응답
+			xhr.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					res = this.responseText;
+					//res = 홍길동/개나리/성춘향/이몽룡/변학도/향단이
+					res = res.split("/");
+					
+					code = "<ul>";
+					/* for(i = 0; i < res.length; i++){
+						code += "<li>" + res[i] + "</li>"; 
+					} */
+					$.each(res,function(i){
+						code += "<li>" + res[i] + "</li>";
+					})
+					code += "</ul>";
+					$('#result1').html(code);
+				}
+			};
+		});
+		//json배열 - String 배열
+		$('#arr').click(function(){
+			//요청
+			xhr.open("get", "jsonArr.jsp", true);
+			xhr.send();
+			
+			   //응답
+	         xhr.onreadystatechange = function(){
+	            if (this.readyState == 4 && this.status == 200) {
+	               datas = JSON.parse(this.responseText) //responseText을 json형식으로 바꿈
+	               //datas = ["홍길동","개나리","진달래","무궁화","삼천리","금수강산"]
+	               
+	               code = "<ol>";
+	               
+	               $.each(datas,function(i){
+	                  code += "<li>" + datas[i] + "</li>"; 
+	               })
+	               code += "</ol>";
+	               $('#result3').html(code);
+	            }
+	         }
+		})		
+		$('#obj').click(function(){
+			//요청
+			xhr.open('get', 'jsonObj.jsp', true);
+			xhr.send();
+			
+			//응답
+			xhr.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					datas = JSON.parse(this.responseText);
+					/* datas = {
+								'name' : '홍길동',
+								'addr' : '대전',
+								'tel' : '010-0000-9999',
+								'email' : 'kkk123@naver.com'
+							} 
+					*/
+					code = "이름 : " + datas.name + "<br/>";
+					code += "주소 : " + datas.addr + "<br/>";
+					code += "전화번호  : " + datas.tel + "<br/>";
+					code += "이메일 : " + datas.email + "<br/>";
+					$('#result2').html(code);
+				}
+			}
+		});
+		$('#objarr').click(function(){
+			//요청
+			xhr.open('get', 'objArr.jsp', true);
+			xhr.send();
+			//응답
+			xhr.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					datas = JSON.parse(this.responseText);
+					code = "";
+					$.each(datas,function(i){
+						code += (i+1) + "번째 데이터 자료";
+						code += "이름 : " + datas[i].name + "<br/>";
+						code += "주소 : " + datas[i].addr + "<br/>";
+						code += "전화번호  : " + datas[i].tel + "<br/>";
+						code += "이메일 : " + datas[i].email + "<br/><br/>";
+					});
+					$('#result4').html(code);
+				}
+			}
+		});
+	});
+</script>
+<style>
+	div{
+		float : left;
+		width : 200px;
+		height : auto;
+	}
+</style>
+</head>
+<body>
+	<button id = "text" type = "button">Text</button>
+	<button id = "obj" type = "button">JSONObj</button>
+	<button id = "arr" type = "button">JSONArray</button>
+	<button id = "objarr" type = "button">JSONObjArr</button>
+	<br/><hr color = "red" />
+	
+	<div id = "result1"></div>
+	<div id = "result2"></div>
+	<div id = "result3"></div>
+	<div id = "result4"></div>
+</body>
+</html>
+
+
+

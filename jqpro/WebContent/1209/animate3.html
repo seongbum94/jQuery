@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<link rel = "stylesheet" href = "../css/mycss.css"></link>
+<style>
+	.dvback{
+		background : lime;
+	}
+	div{
+		border : none;
+		width : 100px;
+		height : 100px;
+		background : yellow;
+		float : left;
+	}
+</style>
+<script>
+	$(function(){
+		function runAnimate(){
+			//$('div').toggleClass('dvback');
+			$('#mover').slideToggle(1000,runAnimate);	//runAnimate는 함수지만 매개변수처럼 호출한다.
+		};
+		//메서드 호출
+		runAnimate();
+		
+		$('button').on('click',function(){
+			$('div:animated').toggleClass('dvback');
+		});
+	})
+</script>
+</head>
+<body>
+	<button>시작</button>
+	<div></div>
+	<div id = "mover"></div>
+	<div></div>
+</body>
+</html>

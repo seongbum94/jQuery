@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#btn1').on('click',function(){
+			//$('#im1').animate({ "left" : "+=100px"},1000);
+			
+			setInterval(function(){
+				//사용가능한 브라우저의 크기를 구한다.
+				//왼쪽 좌표가 브라우저의 크기를 벗어나지 않도록 끝까지 가면 멈춘다.
+				//과제
+				$('#im1').animate({ "left" : window.innerWidth - $('#im1').width()},100);
+			},100)
+			
+		})
+		
+//-------------------------------------------------------------------		
+		$('#btn2').on('click',function(){
+			$('#im1').hide(500);
+		 	$('#im1').delay(500); 
+			$('#im1').show(1000);
+			
+		})
+		
+		
+		
+	})
+</script>
+<link rel = "stylesheet" href="../css/mycss.css">
+<style type="text/css">
+	img{
+		 width : 120px; 
+		 height : 100px;
+		 position: relative;
+	}
+	
+
+
+</style>
+</head>
+<body>
+	<img id="im1" src="../images/image.3.jpg"><br><br>
+    
+    <button id="btn1">animate()</button>
+    <button id="btn2">delay()</button>
+    
+    
+	
+</body>
+</html>

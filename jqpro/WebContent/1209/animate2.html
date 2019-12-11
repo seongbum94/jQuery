@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#btn1').click(function(){
+			//div의 왼쪽좌표를 300px 위치로 이동하면서
+			//글자크기를 5배 크게 확대한다.
+			$('#result').animate({ "left" : "300px"},1000)
+						.delay(500)
+						.animate({ "font-size" : "5.0em"},500);
+		})
+		
+//-------------------------------------------------------------
+
+		$('#btn2').on('click',function(){
+			//왼쪽좌표를 100px로 변경
+				$('img').animate({"left" : "+=300px"},500)
+			//흐려지게 한다. 
+						.animate({"opacity" : "-=0.8"},1000)
+						.delay(500)
+			//다시 원래 위치로 돌아가고 선명하게 변경
+					.animate({"left" : "-=300px"},500)
+					.delay(500)
+					.animate({"opacity" : "+=0.8"},1000);
+		})	
+
+//-------------------------------------------------------------
+		$('#btn3').on('click',function(){
+			$('#dv3').css('display','block');
+			
+			setInterval(function(){
+				$('#dv3').animate({"left" : "200px"}, 500)
+				 .delay(500)
+				 .queue(function(){
+					 cr = Math.floor(Math.random()*255)
+					 cg = Math.floor(Math.random()*255)
+					 cb = Math.floor(Math.random()*255)
+					 
+					 cr = cr.toString(16);
+					 cg = cg.toString(16);
+					 cb = cb.toString(16);
+					 
+					$(this).css('background','#'+ cr + cg + cb);
+					$(this).dequeue();
+				})
+				//원래 위치로 이동 , 그린색으로 변경
+				//안보이게 한다. 
+				 .animate({"left" : "-=200px"},500)
+				 .queue(function(){
+					 cr = Math.floor(Math.random()*255)
+					 cg = Math.floor(Math.random()*255)
+					 cb = Math.floor(Math.random()*255)
+					 
+					 cr = cr.toString(16);
+					 cg = cg.toString(16);
+					 cb = cb.toString(16);
+					 
+					$(this).css('background','#'+ cr + cg + cb);
+					//$(this).css('display','none');
+					$(this).dequeue();
+				})
+				.delay(500)
+				//.fadeOut(500);
+			}, 1000);
+			
+			
+/* 			$('#dv3').animate({"left" : "200px"}, 500)
+					 .delay(500)
+					 .queue(function(){
+						$(this).css('background','red');
+						$(this).dequeue();
+					})
+					//원래 위치로 이동 , 그린색으로 변경
+					//안보이게 한다. 
+					 .animate({"left" : "-=200px"},500)
+					 .queue(function(){
+						$(this).css('background','green');
+						//$(this).css('display','none');
+						$(this).dequeue();
+					})
+					.delay(500)
+					.fadeOut(500); */
+		})
+	
+})
+</script>
+<link rel = "stylesheet" href="../css/mycss.css">
+<style type="text/css">
+	div{
+		width: 300px;
+		height: auto;
+		background: black;
+		color: white;
+		position: relative;
+	}
+	
+	img{
+		width: 200px;
+		height: 150px;
+		position: relative;
+	}
+	
+	#dv3{
+		width: 50px;
+		height: 50px;
+		background: green;
+		border: none;
+		display: none;
+		position: relative;
+	}
+
+</style>
+</head>
+<body>
+	<button id="btn1">시작</button><br><br>
+	<div id="result">jQuery</div><br><br><hr color="blue"><br>
+	
+	<button id="btn3">시작</button><br><br>
+	<div id="dv3"></div><br><br><hr color="blue"><br>
+
+
+	<button id="btn2">시작</button><br><br>
+	<img src="../images/건후8.jpg"><br><br><hr color="blue"><br>
+	
+</body>
+</html>
