@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/mycss.css"></link>
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<style>
+	div{
+		float : left;
+		width : 200px;
+	}
+</style>
+<script>
+	$(function(){
+		$('#text').click(function(){
+			$.get(
+				'../1210/textData.jsp',
+				function(res){
+					res = res.split("/");
+					code = "<ul>";
+					$.each(res,function(i){
+						code += "<li>" + this + "</li>";
+					})
+					code += "</ul>";
+					
+					$('#result1').html(code);
+				},
+				'text'
+			);
+		});
+		
+		$('#obj').click(function(){
+			$.getJSON(
+				'../1210/jsonObj.jsp',
+				function(res){
+					code = "이름 : " + res.name + "<br/>";
+					code += "주소 : " + res.addr + "<br/>";
+					code += "전화번호  : " + res.tel + "<br/>";
+					code += "이메일 : " + res.email + "<br/>";
+					$('#result2').html(code);
+				}
+			);
+		});
+		
+		$('#arr').click(function(){
+			$.getJSON(
+				'../1210/jsonArr.jsp',
+				function(res){
+					code = "<ol>";
+					$.each(res,function(i){
+						code += "<li>" + this + "</li>";
+					})
+					code += "</ol>";
+					
+					$('#result3').html(code);
+				}
+			)
+		})		
+		
+		$('#objarr').click(function(){
+			$.getJSON(
+				'../1210/objArr.jsp',
+				function(res){
+					code = "";
+					$.each(res,function(i){
+						code += (i+1) + "번째 자료" + "<br/>";
+						code += "이름 : " + this.name + "<br/>";
+						code += "주소 : " + this.addr + "<br/>";
+						code += "전화번호  : " + this.tel + "<br/>";
+						code += "이메일 : " + this.email + "<br/>";
+					})
+					$('#result4').html(code);
+				}
+			)
+		})		
+	})
+</script>
+</head>
+<body>
+	<button id = "text" type = "button">Text</button>
+	<button id = "obj" type = "button">JSONObj</button>
+	<button id = "arr" type = "button">JSONArray</button>
+	<button id = "objarr" type = "button">JSONObjArr</button>
+	<br/><hr color = "red" />
+	
+	<div id = "result1"></div>
+	<div id = "result2"></div>
+	<div id = "result3"></div>
+	<div id = "result4"></div>
+</body>
+</html>

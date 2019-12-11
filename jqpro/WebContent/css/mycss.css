@@ -9,8 +9,8 @@ pre{
 }
 
 div{
-	width : 100px;
-	height : 100px;
+	width : 250px;
+	height : auto;
 	border : 2px solid lime;
 	padding : 10px;
 	margin : 10px;

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/mycss.css"></link>
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<style>
+	div{
+		float : left;
+		width : 200px;
+	}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$('#text').click(function(){
+			$.ajax({
+				url : '../1210/textData.jsp',
+				type : 'get',
+				dataType : 'text',
+				success : function(res){
+					res = res.split("/");
+					code = "<ul>";
+					$.each(res,function(i){
+						code += "<li>" + this + "</li>";
+					})
+					code += "</ul>";
+					
+					$('#result1').html(code);
+				},
+				error : function(xr){
+					alert("상태 : " + xr.status);
+				}
+			})
+		});
+		
+		$('#obj').click(function(){
+			$.ajax({
+				url : '../1210/jsonObj.jsp',
+				type : 'get',
+				dataType : 'json',
+				success : function(res){
+					code = "이름 : " + res.name + "<br/>";
+					code += "주소 : " + res.addr + "<br/>";
+					code += "전화번호  : " + res.tel + "<br/>";
+					code += "이메일 : " + res.email + "<br/>";
+					$('#result2').html(code)
+				},
+				error : function(xr){
+					alert("상태 : " + xr.status);
+				}
+			})
+		});
+		
+		$('#arr').click(function(){
+			$.ajax({
+				url : '../1210/jsonArr.jsp',
+				type : 'get',
+				dataType : 'json',
+				success : function(res){
+					code = "<ul>";
+					$.each(res,function(i){
+						code += "<li>" + this + "</li>";
+					})
+					code += "</ul>";
+					
+					$('#result3').html(code);
+				},
+				error : function(xr){
+					alert("상태 : " + xr.status);
+				}
+			})
+		});
+		
+		$('#objarr').click(function(){
+			$.ajax({
+				url : '../1210/objArr.jsp',
+				type : 'get',
+				dataType : 'json',
+				success : function(res){
+					code = "";
+					$.each(res,function(i){
+						code += (i+1) + "번째 자료" + "<br/>";
+						code += "이름 : " + this.name + "<br/>";
+						code += "주소 : " + this.addr + "<br/>";
+						code += "전화번호  : " + this.tel + "<br/>";
+						code += "이메일 : " + this.email + "<br/>";
+					})
+					$('#result4').html(code);
+				},
+				error : function(xr){
+					alert("상태 : " + xr.status);
+				}
+			})
+		});
+	});
+</script>
+</head>
+<body>
+	<button id = "text" type = "button">Text</button>
+	<button id = "obj" type = "button">JSONObj</button>
+	<button id = "arr" type = "button">JSONArray</button>
+	<button id = "objarr" type = "button">JSONObjArr</button>
+	<br/><hr color = "red" />
+	
+	<div id = "result1"></div>
+	<div id = "result2"></div>
+	<div id = "result3"></div>
+	<div id = "result4"></div>
+</body>
+</html>

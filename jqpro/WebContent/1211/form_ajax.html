@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/mycss.css"></link>
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<script>
+	$(function(){
+		$('#btn1').click(function(){
+			vname = $('#name').val();
+			vtel = $('#tel').val();
+			
+			$.ajax({
+				url : '../1209/test1.jsp',
+				type : 'get',
+				data : {'name' : vname, 'tel' : vtel },			//json방식
+				//data : "name=" + vname + "&tel=" + vtel,		//text방식			
+				success : function(res){
+					$('#result').html(res);
+				},
+				error : function(xhr){
+					alert("상태" + xhr.status);					//200, 404, 500
+				},
+				dataType : 'text'
+			});
+		});
+		
+		$('#btn2').click(function(){
+			vname = $('#name').val();							//serialize를 사용하면 필요 없음
+			vtel = $('#tel').val();
+			
+			$.ajax({
+				url : '../1209/test1.jsp',
+				type : 'post',
+				data : {'name' : vname, 'tel' : vtel },			//json방식
+				//data : "name=" + vname + "&tel=" + vtel,		//text방식			
+				success : function(res){
+					$('#result').html(res);
+				},
+				error : function(xhr){
+					alert("상태" + xhr.status);					//200, 404, 500
+				},
+				dataType : 'text'
+			});
+		});
+		$('#btn3').click(function(){
+			console.log($('#ff').serialize());
+			$.ajax({
+				url : '../1209/test1.jsp',
+				type : 'post',
+				data : $('#ff').serialize(),
+				dataType : 'text',
+				success : function(res){
+					$('#result').html(res);
+				},
+				error : function(st){
+					alert("상태 : " + st.status);
+				}
+			})
+		})
+	});
+</script>
+</head>
+<body>
+	<pre>
+		$('#ff').serialize() : form의 name속성의 name = "name", name = "tel" 에서
+								속성값인 name, tel의 입력된 값을 전송한다.
+								전송시 data를 자동으로 구성한다.
+								data : "name=홍길동&tel="010-1111-1111"
+								
+		직접 데이터를 설정해서 보내는 경우
+		vname = $('#name').val();
+		vtel = $('#tel').val();
+		
+		전송시 data를 구성한다.
+		data : {'name' : vname, 'tel' : vtel },			//json 방식
+		data : "name=" + vname + "&tel=" + vtel			//텍스트 방식
+	</pre>
+	<form id = "ff">
+		이름 : <input type = "text" name ="name" id = "name"  /><br/>
+		전화번호 : <input type = "text" name ="tel" id = "tel" /><br/>
+		<br>
+		<button class = "btnget" id = "btn1" type = "button">ajax-get</button>
+		<button class = "btnget" id = "btn2" type = "button">ajax-post</button>
+		<button class = "btnget" id = "btn3" type = "button">ajax-serialize</button>
+	</form>
+	<div id = "result"></div>
+</body>
+</html>
