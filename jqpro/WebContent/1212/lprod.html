@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/mycss.css">
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<script>
+	$(function(){
+		$('button').click(function(){
+			$.get(
+				'lprodList.jsp',
+				function(res){
+					code = "";
+					$.each(res, function(i){
+						code += "id : " + this.id + "<br>";
+						code += "gu : " + this.gu + "<br>";
+						code += "nm : " + this.nm + "<br>";
+						code += "<hr color = 'blue' />";
+					})
+					$('div').html(code);
+				},
+				'json'
+			);
+		});
+	})
+</script>
+<style>
+	div{
+		width : 100%;
+	}
+	table{
+		border : 3px solid orange;	 
+		border-collapse : collapse;
+		text-align : center;
+	}
+</style>
+</head>
+<body>
+	<button type = "button">lprodList</button>
+	<div id = "d1"></div>
+</body>
+</html>

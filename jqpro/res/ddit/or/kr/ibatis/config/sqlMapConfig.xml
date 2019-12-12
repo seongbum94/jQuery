@@ -7,7 +7,7 @@
       DB와 연결하는 정보를 properties파일에 설정해 놓고
       이 properties파일의 내용을 읽어와 처리한다.
     -->
-    <properties resource="db.properties"/>
+    <properties resource="ddit/or/kr/ibatis/config/db.properties"/>
     
 	<settings cacheModelsEnabled="true" enhancementEnabled="true"
 				lazyLoadingEnabled="true" maxRequests="32"
@@ -22,6 +22,7 @@
      -->
 <!--      <typeAlias alias="lpVO" type="basic.LprodVO"/> -->
       <typeAlias alias="memVO" type="kr.or.ddit.member.vo.MemberVO"/>
+      <typeAlias alias="lprodVO" type="kr.or.ddit.lprod.vo.LprodVO"/>
             
     <!-- 
        DB와 연결을 처리하는 부분
@@ -43,5 +44,5 @@
       -->
 <!--       <sqlMap resource="basic/lprodTest.xml"/> -->
       <sqlMap resource="ddit/or/kr/ibatis/mapper/member.xml"/>
- 
+      <sqlMap resource="ddit/or/kr/ibatis/mapper/lprod.xml"/>
 </sqlMapConfig>
