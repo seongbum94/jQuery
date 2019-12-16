@@ -4,16 +4,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel = "stylesheet" href = "../css/mycss.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <script src = "../js/jquery-3.4.1.min.js"></script>
 <script>
 	$(function(){
-		/* $('button').click(function(){
+		 $('button').click(function(){
 			$.ajax({
 				url : 'memberList.jsp',
 				type : 'get',
 				dataType : 'json',
 				success : function(res){
-					code = "<table>";
+					code = "<table class = 'table table-hover'>";
 					$.each(res, function(i){
 						code += "<tr>";
 						code += "<td>" + this.id + "</td>";
@@ -34,20 +37,20 @@
 					alert("상태 : " + xh.status);
 				}
 			})
-		}) */
-		$('button').click(function(){
-			$.ajax({
-				url : 'memberList2.jsp',
-				type : 'get',
-				dataType : 'html',
-				success : function(res){
-					$('div').html(res);
-				},
-				error : function(xh){
-					alert("상태 : " + xh.status);
-				}
-			})
-		});
+		})
+// 		$('button').click(function(){
+// 			$.ajax({
+// 				url : 'memberList2.jsp',
+// 				type : 'get',
+// 				dataType : 'html',
+// 				success : function(res){
+// 					$('div').html(res);
+// 				},
+// 				error : function(xh){
+// 					alert("상태 : " + xh.status);
+// 				}
+// 			})
+// 		});
 	})
 </script>
 <style>
@@ -59,10 +62,13 @@
 		border-collapse : collapse;
 		text-align : center;
 	}
+	button{
+		margin : 10px;
+	}
 </style>
 </head>
 <body>
-	<button type = "button">memberList</button>
+	<button type = "button" class = 'btn btn-info'>memberList</button>
 	<div id = "d1"></div>
 </body>
 </html>

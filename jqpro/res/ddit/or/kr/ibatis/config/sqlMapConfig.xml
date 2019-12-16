@@ -23,6 +23,8 @@
 <!--      <typeAlias alias="lpVO" type="basic.LprodVO"/> -->
       <typeAlias alias="memVO" type="kr.or.ddit.member.vo.MemberVO"/>
       <typeAlias alias="lprodVO" type="kr.or.ddit.lprod.vo.LprodVO"/>
+      <typeAlias alias="buyerVO" type="kr.or.ddit.buyer.vo.BuyerVO"/>
+      <typeAlias alias="str" type="java.lang.String"/>
             
     <!-- 
        DB와 연결을 처리하는 부분
@@ -45,4 +47,5 @@
 <!--       <sqlMap resource="basic/lprodTest.xml"/> -->
       <sqlMap resource="ddit/or/kr/ibatis/mapper/member.xml"/>
       <sqlMap resource="ddit/or/kr/ibatis/mapper/lprod.xml"/>
+      <sqlMap resource="ddit/or/kr/ibatis/mapper/buyer.xml"/>
 </sqlMapConfig>
