@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/mycss.css">
+<script src = "../js/jquery-3.4.1.min.js"></script>
+<script>
+	$(function(){
+		$.ajax({
+			url : "/jqpro/lprodServlet",
+			type : "get",
+			dataType : 'json',
+			success : function(res){
+				code = "";
+				$.each(res, function(){
+					code += "<option value = '" + this.gu+ "'>" + this.nm + "</option>";
+				})
+				$('#lprod').html(code);
+			},
+			error : function(xhr){
+				alert("상태 : " + xhr.status);
+			}
+		})
+		
+		$('#lprod').change(function(){
+			//선택한 option의 value값 가져오기
+			gu = $('#lprod option:selected').val();
+			$.ajax({
+				url : "/jqpro/ProdServlet",
+				type : "get",
+				data : {"lprod_gu" : gu},
+				dataType : 'json',
+				success : function(res){
+					code = "";
+					$.each(res, function(){
+						code += "<option value = '" + this.id+ "'>" + this.name + "</option>";
+					})
+					$('#prod').html(code);
+				},
+				error : function(xhr){
+					
+				}
+			})
+		});
+	})
+</script>
+</head>
+<body>
+	<select id = "lprod"></select>
+	<select id = "prod">
+	</select>
+	<div id = "detail"></div>
+</body>
+</html>
