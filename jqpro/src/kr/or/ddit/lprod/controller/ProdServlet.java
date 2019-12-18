@@ -30,11 +30,32 @@ public class ProdServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		
 		//4. view페이지로 이동(forward) - 결과값을 출력한다.
-		RequestDispatcher disp = request.getRequestDispatcher("1216/prodNames.jsp");
+		//RequestDispatcher disp = request.getRequestDispatcher("1216/prodNames.jsp");
+		RequestDispatcher disp = request.getRequestDispatcher("1216/prodswNames.jsp");
 		disp.forward(request, response);
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//0. 클라이언트 요청시 값을 전달 받는다.
+		String prod_id = request.getParameter("prod_id");		//ajax의 data에서 가져옴
+		
+		//1. service 객체 얻기
+		ILprodService service =	LprodServiceImpl.getInstance();
+		
+		//2. service 메소드 호출
+		ProdVO vo = service.prodDetail(prod_id);
+		
+		//3. request 결과 값저장
+		request.setAttribute("vo", vo);		//request는 응답하면 사라짐
+		
+		//4. view 페이지로 이동
+		RequestDispatcher disp = request.getRequestDispatcher("1216/prodDetail.jsp");
+		disp.forward(request, response);
 	}
 }
+
+
+
+
+

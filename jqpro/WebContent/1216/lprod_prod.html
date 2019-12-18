@@ -3,53 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel = "stylesheet" href = "../css/mycss.css">
-<script src = "../js/jquery-3.4.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="../js/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="../css/mycss.css">
 <script>
-	$(function(){
+	$(function() {
 		$.ajax({
 			url : "/jqpro/lprodServlet",
 			type : "get",
 			dataType : 'json',
-			success : function(res){
+			success : function(res) {
 				code = "";
-				$.each(res, function(){
-					code += "<option value = '" + this.gu+ "'>" + this.nm + "</option>";
+				$.each(res, function() {
+					code += "<option value = '" + this.gu+ "'>" + this.nm
+							+ "</option>";
 				})
 				$('#lprod').html(code);
+				// 				$('#lprod').trigger('change');
 			},
-			error : function(xhr){
+			error : function(xhr) {
 				alert("상태 : " + xhr.status);
 			}
 		})
-		
-		$('#lprod').change(function(){
+
+		$('#lprod').change(
+		function() {
 			//선택한 option의 value값 가져오기
 			gu = $('#lprod option:selected').val();
 			$.ajax({
 				url : "/jqpro/ProdServlet",
 				type : "get",
-				data : {"lprod_gu" : gu},
-				dataType : 'json',
-				success : function(res){
-					code = "";
-					$.each(res, function(){
-						code += "<option value = '" + this.id+ "'>" + this.name + "</option>";
-					})
-					$('#prod').html(code);
+				data : {
+					"lprod_gu" : gu
 				},
-				error : function(xhr){
-					
+				dataType : 'json',
+				success : function(res) {
+					code = "";
+					if (res.sw == "OK") {
+						$.each(
+							res.data,
+							function(i) {
+							code += "<option value = '" + this.id + "'>"
+									+ this.name
+									+ "</option>";
+						});
+					} else if (res.sw == "NO") {
+						code += "<option value = ''>데이터 없음</option>";
+						vimg = $('<img>',{
+									'src' : '../images/loading.gif',
+									'width' : '200px',
+									'height' : '200px'
+								})
+						$('#detail').empty().append(vimg);
+					}
+					$('#prod').html(code);
+					// 					if($('#prod option:selected').val() != 0)
+					// 						$('#prod').trigger('change');
+				},
+				error : function(xhr) {
+					alert("상태 : " + xhr.status);
 				}
 			})
 		});
+		$('#prod').change(
+				function() {
+					//id = $('#prod option:selected').val()
+					id = $('option:selected', this).val();
+					$.ajax({
+						url : "/jqpro/ProdServlet",
+						type : 'post',
+						data : {
+							"prod_id" : id
+						},
+						dataType : 'json',
+						success : function(res) {
+							code = "<table class='table table-bordered'>";
+							code += "<tr><td>항목</td><td>내용</td></tr>";
+							code += "<tr><td>id</td><td>" + res.id + "</td></tr>";
+							code += "<tr><td>name</td><td>" + res.name + "</td></tr>";
+							code += "<tr><td>lgu</td><td>" + res.lgu + "</td></tr>";
+							code += "<tr><td>price</td><td>" + res.price + "</td></tr>";
+							code += "<tr><td>sale</td><td>" + res.sale + "</td></tr>";
+							code += "<tr><td>size</td><td>" + res.size + "</td></tr>";
+							code += "<tr><td>cost</td><td>" + res.cost + "</td></tr>";
+							code += "<tr><td>color</td><td>" + res.color + "</td></tr>";
+							code += "<tr><td>buyer</td><td>" + res.buyer + "</td></tr>";
+							code += "</table>";
+							$('#detail').html(code);
+						},
+						error : function(xhr) {
+							alert("상태 : " + xhr.status);
+						}
+					})
+				})
 	})
 </script>
+<style>
+	div{
+		width : 80%;
+		border : 1px solid gray;
+		display : block;
+		margin : auto;
+	}
+	h2{
+		text-align : center;
+	}
+</style>
 </head>
 <body>
-	<select id = "lprod"></select>
-	<select id = "prod">
-	</select>
-	<div id = "detail"></div>
+	<!-- <select id = "lprod" class="form-control"></select>
+	<select id = "prod" class="form-control">
+	</select> -->
+	<div class="container">
+		<h2>제품리스트</h2>
+		<form>
+			<div class="form-group">
+				<label for="lprod">제품분류리스트 : </label> 
+				<select class="form-control" id="lprod">
+				</select> <br>
+				<label for="prod">상품리스트 : </label> 
+				<select class="form-control" id="prod">
+				</select> <br>
+			</div>
+		</form>
+		<div id="detail"></div>
+	</div>
 </body>
 </html>
