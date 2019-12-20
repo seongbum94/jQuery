@@ -26,6 +26,7 @@
       <typeAlias alias="buyerVO" type="kr.or.ddit.buyer.vo.BuyerVO"/>
       <typeAlias alias="prodVO" type="kr.or.ddit.lprod.vo.ProdVO"/>
       <typeAlias alias="zipVO" type="kr.or.ddit.member.vo.ZipVO"/>
+      <typeAlias alias="boardVO" type="kr.or.ddit.board.vo.BoardVO"/>
       <typeAlias alias="str" type="java.lang.String"/>
             
     <!-- 
@@ -51,4 +52,5 @@
       <sqlMap resource="ddit/or/kr/ibatis/mapper/lprod.xml"/>
       <sqlMap resource="ddit/or/kr/ibatis/mapper/buyer.xml"/>
       <sqlMap resource="ddit/or/kr/ibatis/mapper/prod.xml"/>
+      <sqlMap resource="ddit/or/kr/ibatis/mapper/board.xml"/>
 </sqlMapConfig>

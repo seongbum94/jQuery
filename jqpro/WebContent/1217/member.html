@@ -7,14 +7,21 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src = "../js/regcheck.js"></script>
 
 <script>
 	$(function(){
 		$('#btn1').click(function(){
 			idvalue = $('#id').val();
+			
+			if(!idcheck()){
+				return false;
+			}
+			
+			//공백, 길이, 형식 체크가 성공적으로 완료되면 ajax를 수행한다.
 			$.ajax({
 				url : "/jqpro/CheckId",
-				type : 'post',
+				type : "post",
 				data : { "id" : idvalue},
 				dataType : "json",
 				success : function(res){
@@ -32,7 +39,10 @@
 		
 		//동입력하고 확인버튼 클릭	
 		$('#okdong').click(function(){
-			dongvalue = $('#dong').val();
+			if(!dongcheck()){
+				return false;
+			}
+			
 			$.ajax({
 				url : "/jqpro/SearchDong",
 				type : "post",
@@ -45,7 +55,7 @@
 					code += "<td>번지</td></tr>";
 					
 					$.each(res, function(i){
-						code += "<tr><td>" + this.zip + "</td>";
+						code += "<tr class = 'ziptr'><td>" + this.zip + "</td>";
 						code += "<td>" + this.addr + "</td>";
 						code += "<td>" + this.bunji + "</td></tr>";	
 					})
@@ -58,9 +68,61 @@
 				}
 			})
 		})
+		//검색된 우편번호 결과 모달창에서 하나를 선택해서 
+		$('#result').on('click','.ziptr',function(){	//delegate
+			zip  = $('td:eq(0)',this).text();			//this는 .ziptr
+			addr = $('td:eq(1)',this).text();
+			
+			//부모창에 값 전달하기
+			$('#zip').val(zip);
+			$('#addr1').val(addr);
+			
+			//모달창 닫기
+			$('#myModal').modal('hide');
+			//모달창 내용 지우기
+			//$('#myModal #dong').val("");
+			//$('#myModal #result').empty();
+		})
+		
+		$('#myModal').on("hide.bs.modal",function(){
+			$('#dong', this).val("");
+			$('#result', this).empty();
+		});
+		
+		//제출버튼
+		$('#btnsubmit').on('click',function(){
+			//입력한 모든값을 가져온다
+			/* 
+			idval = $('#id').val();
+			nameval = $('#name').val();
+			passval = $('pass') 
+			"id" + idval + "&name" + nameval + "&name_pass=" + passval
+			*/
+			//console.log($('#inf').serialize());
+			console.log($('#inf').serializeArray());
+			
+			if(!submitcheck()){
+				return false;
+			}
+			 $.ajax({
+				url : "/jqpro/InputMember",
+				type : "post",
+				data : $('#inf').serializeArray(),
+				dataType : 'json',
+				success : function(res){
+					$('#spanres').text(res.data).css('color','red');
+				},
+				error : function(xhr){
+					alert("상태 : " + xhr.status);
+				}
+			})
+		})
 	})
 </script>
 <style>
+	.ziptr:hover{
+		background : lime;
+	}
 	form{
 		margin-left : auto;
 		margin-right : auto;
@@ -87,7 +149,7 @@
 		height : 50px;
 		border-radius: 40px;
 	}
-	#submit{
+	#btnsubmit{
 		background-color: blue;
 		color : white;
 	}
@@ -102,7 +164,7 @@
 </head>
 <body>
 	<h1>회원가입</h1>
-	<form class="form-horizontal">
+	<form id = "inf" class="form-horizontal">
 	<div id = "d1">
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="email">아이디 : </label>
@@ -165,15 +227,16 @@
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="email">상세주소 : </label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="addr1" name = "mem_add2">
+				<input type="text" class="form-control" id="addr2" name = "mem_add2">
 			</div>
 		</div>
 	</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<div class="checkbox">
-					<button id = "submit" class = "buttons" type = "button">제출</button>
-					<button id = "reset" class = "buttons" type = "reset">초기화</button>
+					<button id = "btnsubmit" class = "buttons" type = "button">제출</button>
+					<button id = "reset" class = "buttons" type = "reset">초기화</button><br/>
+					<span id = "spanres"></span>
 				</div>
 			</div>
 		</div>

@@ -16,7 +16,6 @@ public class CheckId extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//0. 클라이언트 전송시에 값을 전달 받는다.
 		String inputid = request.getParameter("id");
-		
 		//1. service객체 얻기
 		IMemberService service = MemberServiceImpl.getInstance();
 		
@@ -28,6 +27,6 @@ public class CheckId extends HttpServlet {
 		request.setAttribute("inputid", inputid);	//a001
 		
 		//5. view 페이지로 넘어간다
-		request.getRequestDispatcher("1217/checkd.jsp").forward(request, response);
+		request.getRequestDispatcher("1217/checkid.jsp").forward(request, response);
 	}
 }
